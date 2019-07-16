@@ -16,6 +16,17 @@ class Intro(Page):
         return self.subsession.round_number == 1
 
 
+class CQ1(Page):
+    form_model = 'player'
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
+    def get_form_fields(self):
+        fields = [f.name for f in Player._meta.get_fields() if f.name.startswith('cq')]
+
+        return fields
+
+
 class IntroPunishment(Page):
     def is_displayed(self) -> bool:
         return self.round_number == self.session.config['punishment_round']
@@ -74,13 +85,14 @@ class FinalResults(Page):
 
 
 page_sequence = [
-    StartWP,
-    Intro,
-    IntroPunishment,
-    Contribute,
-    AfterContribWP,
-    Punishment,
-    AfterPunishmentWP,
-    Results,
-    FinalResults,
+    # StartWP,
+    # Intro,
+    CQ1,
+    # IntroPunishment,
+    # Contribute,
+    # AfterContribWP,
+    # Punishment,
+    # AfterPunishmentWP,
+    # Results,
+    # FinalResults,
 ]

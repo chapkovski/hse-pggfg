@@ -1,0 +1,82 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Часть 1: Проверочные вопросы
+{% endblock %}
+
+{% block inner_content %}
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                Question 1. Each member of the group can is endowed with
+                20 Taler. Each
+                member of the group – including yourself – do not contribute anything to] the
+                project. What is, in Taler:
+            </h6>
+            {% formfield player.cq1_a %}
+            {% formfield player.cq1_b %}
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                Question 2. Each member of the group is endowed with
+                20 Taler. You
+                contribute all 20 Taler. The other two member of the group also contribute
+                all 20 Taler.
+                What is, in Taler,
+            </h6>
+            {% formfield player.cq2_a %}
+            {% formfield player.cq2_b %}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                Question 3. Each member of the group is endowed with 20 Taler. You
+                contribute 3 Taler. The second member of the group contributes 10 Taler and the third member of the
+                group contributes 17 Taler].
+                What is, in Taler,
+            </h6>
+            {% formfield player.cq3_a %}
+            {% formfield player.cq3_b %}
+            {% formfield player.cq3_c %}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                Question 4. Each member of the group is endowed with 20 Taler]. You
+                and the second member of the group contribute 20 Taler each]. The third member of the group contributes
+                0 Taler].
+                What is, in Taler,
+            </h6>
+            {% formfield player.cq4_a %}
+            {% formfield player.cq4_b %}
+            {% formfield player.cq4_c %}
+        </div>
+    </div>
+
+
+    {% include Constants.instructions_template %}
+
+    {{ block.super }}
+{% endblock %}
+{% block scripts %}
+    <script>$('#id_contribution').focus();</script>
+
+{% endblock %}
+
+{% block styles %}
+    <style>
+    .card{
+        margin-top:10px;
+    }
+    </style>
+{% endblock %}

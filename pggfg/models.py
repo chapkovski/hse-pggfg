@@ -68,6 +68,29 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    ########### BLOCK: CQ ##############################################################
+    cq1_a = models.CurrencyField(label="your total income in this period?")
+    cq1_b = models.CurrencyField(
+        label="the total income from the experiment of each of the other two members of the group?")
+
+    cq2_a = models.CurrencyField(label="your total income in this period?")
+    cq2_b = models.CurrencyField(
+        label="the total income from the experiment of each of the other two members of the group?")
+
+    cq3_a = models.CurrencyField(label="your total income in this period?")
+    cq3_b = models.CurrencyField(
+        label="the total income from the experiment of the second member of the group?")
+    cq3_c = models.CurrencyField(
+        label="the total income from the experiment of the third member of the group?")
+
+    cq4_a = models.CurrencyField(label="your total income in this period?")
+    cq4_b = models.CurrencyField(
+        label="the total income from the experiment of the second member of the group?")
+    cq4_c = models.CurrencyField(
+        label="the total income from the experiment of the third member of the group?")
+
+    ############ END OF: CQ #############################################################
+
     endowment = models.CurrencyField()
     contribution = models.PositiveIntegerField(
         min=0, max=Constants.endowment,
