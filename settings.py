@@ -33,7 +33,8 @@ LANGUAGE_CODE = 'ru'
 REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'ECU'
-ROOMS = [{'name': 'goettingen', 'display_name': 'Room for Goettingen Workshop'}]
+ROOMS = [{'name': 'hse',
+          'display_name': 'Summer School (HSE)'}]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
