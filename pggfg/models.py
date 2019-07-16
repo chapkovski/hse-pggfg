@@ -22,7 +22,7 @@ class Constants(BaseConstants):
     instructions_template = 'pggfg/includes/Instructions.html'
     endowment = 20
     efficiency_factor = 2
-    punishment_endowment = 10
+    punishment_endowment = 6
     punishment_factor = 3
 
 
@@ -45,6 +45,7 @@ class Subsession(BaseSubsession):
             self.punishment = True
         for p in self.get_players():
             p.endowment = Constants.endowment
+            p.set_punishment_endowment()
 
 
 class Group(BaseGroup):
@@ -76,7 +77,7 @@ class Player(BasePlayer):
     punishment_received = models.IntegerField()
     pd_payoff = models.CurrencyField(doc='to store payoff from contribution stage')
     punishment_endowment = models.CurrencyField(initial=0, doc='punishment endowment')
-    pun1, pun2, pun3 = [models.CurrencyField() for i in range(3)]
+    pun1, pun2, pun3 = [models.CurrencyField(min=0, max=Constants.punishment_endowment) for i in range(3)]
 
     def set_payoff(self):
         self.payoff = self.pd_payoff
@@ -84,8 +85,9 @@ class Player(BasePlayer):
             self.payoff -= (self.punishment_sent + self.punishment_received)
 
     def set_punishment_endowment(self):
-        assert self.pd_payoff is not None, 'You have to set pd_payoff before setting punishment endowment'
-        self.punishment_endowment = min(self.pd_payoff, Constants.punishment_endowment)
+        # TODO: it is not the proper way of doing this but a temporary fix
+        # TODO: because theoretically they can have more for punishment than their own income (unlikely)
+        self.punishment_endowment = Constants.punishment_endowment
 
     def set_punishment(self):
         puns_sent = [getattr(self, 'pun{}'.format(p.id_in_group)) for p in self.get_others_in_group()]

@@ -36,8 +36,6 @@ class Contribute(Page):
 class AfterContribWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_pd_payoffs()
-        for p in self.group.get_players():
-            p.set_punishment_endowment()
 
 
 class Punishment(Page):
@@ -58,7 +56,7 @@ class Punishment(Page):
     def error_message(self, values):
         tot_pun = sum([int(i) for i in values.values()])
         if tot_pun > self.player.punishment_endowment:
-            return 'You can\'t send more than {} in total'.format(self.player.punishment_endowment)
+            return f'Вы не можете послать вычетов больше чем {self.player.punishment_endowment}'
 
 
 class AfterPunishmentWP(WaitPage):
