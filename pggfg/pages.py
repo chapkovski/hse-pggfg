@@ -6,6 +6,17 @@ import random
 from django.core import validators
 
 
+class Welcome(Page):
+    form_fields = ['user_id']
+    form_model = 'player'
+
+    def is_displayed(self) -> bool:
+        return self.round_number == 1
+
+    def before_next_page(self):
+        self.participant.label = str(self.player.user_id)
+
+
 class StartWP(WaitPage):
     pass
 
@@ -42,6 +53,17 @@ class CQ1(CompMixin, Page):
 class IntroPunishment(Page):
     def is_displayed(self) -> bool:
         return self.round_number == self.session.config['punishment_round']
+
+
+class CQ2(CompMixin, Page):
+    form_model = 'player'
+
+    def is_displayed(self) -> bool:
+        return self.round_number == self.session.config['punishment_round']
+
+    def get_form_fields(self):
+        fields = [f.name for f in Player._meta.get_fields() if f.name.startswith('pcq')]
+        return fields
 
 
 class Contribute(Page):
@@ -95,16 +117,21 @@ class FinalResults(Page):
     def is_displayed(self) -> bool:
         return self.round_number == Constants.num_rounds
 
+    def vars_for_template(self) -> dict:
+        return {'real_payoff': self.participant.payoff.to_real_world_currency(self.session)}
+
 
 page_sequence = [
-    # StartWP,
-    # Intro,
+    Welcome,
+    StartWP,
+    Intro,
     CQ1,
-    # IntroPunishment,
-    # Contribute,
-    # AfterContribWP,
-    # Punishment,
-    # AfterPunishmentWP,
-    # Results,
-    # FinalResults,
+    IntroPunishment,
+    CQ2,
+    Contribute,
+    AfterContribWP,
+    Punishment,
+    AfterPunishmentWP,
+    Results,
+    FinalResults,
 ]

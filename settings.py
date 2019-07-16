@@ -6,7 +6,7 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1.00,
+    'real_world_currency_per_point': 4.00,
     'participation_fee': 0.00,
     'doc': "",
 }
@@ -18,7 +18,8 @@ SESSION_CONFIGS = [
         'display_name': "Public Good Game - Punishment",
         'num_demo_participants': 3,
         'app_sequence': ['pggfg'],
-        'punishment_round': 6
+        'punishment_round': 11,
+        'use_browser_bots': False,
     },
 
 ]
@@ -32,7 +33,7 @@ for i in SESSION_CONFIGS:
 LANGUAGE_CODE = 'ru'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'RUB'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'ECU'
 ROOMS = [{'name': 'hse',

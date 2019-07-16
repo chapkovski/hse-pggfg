@@ -1,0 +1,81 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Часть 2: Проверочные вопросы
+{% endblock %}
+
+{% block inner_content %}
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                Какими будут Ваши расходы на вычеты если в текущем раунде Вы в совокупности вычли у других участников 0
+                ECU (ничего)?
+            </h6>
+            {% formfield player.pcq1 label='' %}
+
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                На сколько ECU изменится Ваш выигрыш в этом раунде, если другие участники вместе потратят 0 ECU на
+                вычеты из Вашего выигрыша?
+            </h6>
+            {% formfield player.pcq2 label='' %}
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                На сколько ECU изменится Ваш выигрыш в этом раунде, если другие участники вместе потратят 4 ECU на
+                вычеты из Вашего выигрыша?
+            </h6>
+            {% formfield player.pcq3 label='' %}
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">
+                На сколько ECU изменится Ваш выигрыш в этом раунде, если другие участники вместе потратят 10 ECU на
+                вычеты из Вашего выигрыша?
+            </h6>
+            {% formfield player.pcq4 label='' %}
+
+        </div>
+    </div>
+    <div class="my-3">
+        {% next_button %}
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <b>Инструкции для части 2:</b>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush mb-3">
+                {% include 'pggfg/includes/punishment_instructions.html' %}
+            </ul>
+        </div>
+    </div>
+
+    {{ block.super }}
+{% endblock %}
+{% block scripts %}
+    <script>$('#id_contribution').focus();</script>
+
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .card {
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}

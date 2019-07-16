@@ -26,6 +26,21 @@
             <th>{{ participant.payoff }}</th>
         </tr>
     </table>
+
+    <h4 class="my-3">Общий выигрыш:</h4>
+    <table class="table table-hover table-striped table-bordered">
+
+
+        <tr>
+            <td>Выигрыш в эксперименте:</td>
+            <td>{{ real_payoff }}</td>
+        </tr>
+
+        <tr class="table-success">
+            <th>Общая выплата:</th>
+            <th>{{ participant.payoff_plus_participation_fee }}</th>
+        </tr>
+    </table>
     <div class="my-3">
         {% next_button %}
     </div>

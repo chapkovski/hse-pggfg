@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     name_in_url = 'pggfg'
     players_per_group = 3
     num_others_per_group = players_per_group - 1
-    num_rounds = 10
+    num_rounds = 20
     rounds = list(range(1, num_rounds + 1))
     instructions_template = 'pggfg/includes/Instructions.html'
     endowment = 20
@@ -31,10 +31,14 @@ class Constants(BaseConstants):
                        'cq2_b': 30,
                        'cq3_a': 32,
                        'cq3_b': 25,
-                       'cq3_c': 17,
+                       'cq3_c': 18,
                        'cq4_a': 20,
                        'cq4_b': 20,
                        'cq4_c': 40,
+                       'pcq1': 0,
+                       'pcq2': 0,
+                       'pcq3': 12,
+                       'pcq4': 30,
                        }
 
 
@@ -79,7 +83,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    ########### BLOCK: CQ ##############################################################
+    ########### BLOCK: CQ - Part 1 ##############################################################
     cq1_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
     cq1_b = models.CurrencyField(
         label="Каким будет общий выигрыш двух других участников из вашей группы в текущем периоде (ECU)?")
@@ -101,7 +105,13 @@ class Player(BasePlayer):
         label="Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?")
 
     ############ END OF: CQ #############################################################
-
+    ########### BLOCK: CQ for Punishment stage ##############################################################
+    pcq1 = models.CurrencyField()
+    pcq2 = models.CurrencyField()
+    pcq3 = models.CurrencyField()
+    pcq4 = models.CurrencyField()
+    ############ END OF: CQ for Punishment stage #############################################################
+    user_id = models.IntegerField(label='Введите номер указанный на табличке у вас на столе')
     endowment = models.CurrencyField()
     contribution = models.PositiveIntegerField(
         min=0, max=Constants.endowment,
@@ -113,6 +123,11 @@ class Player(BasePlayer):
     pd_payoff = models.CurrencyField(doc='to store payoff from contribution stage')
     punishment_endowment = models.CurrencyField(initial=0, doc='punishment endowment')
     pun1, pun2, pun3 = [models.CurrencyField(min=0, max=Constants.punishment_endowment) for i in range(3)]
+
+    def user_id_error_message(self, value):
+        ids = self.subsession.player_set.filter(user_id__isnull=False).values_list("user_id", flat=True)
+        if value in ids:
+            return 'Такой номер уже есть, попробуйте еще раз.'
 
     def set_payoff(self):
         self.payoff = self.pd_payoff

@@ -10,10 +10,30 @@ import random
 class PlayerBot(Bot):
 
     def play_round(self):
+        print(f'ROUND NUMBER:::{self.round_number}\n')
+        print(f'PUNISHMENT??? {self.subsession.punishment}')
         if self.round_number == 1:
+            yield Welcome, {'user_id': self.player.id_in_subsession}
             yield Intro
+            yield CQ1, {'cq1_a': 20,
+                        'cq1_b': 20,
+                        'cq2_a': 30,
+                        'cq2_b': 30,
+                        'cq3_a': 32,
+                        'cq3_b': 25,
+                        'cq3_c': 18,
+                        'cq4_a': 20,
+                        'cq4_b': 20,
+                        'cq4_c': 40,
+                        }
         if self.round_number == self.session.config['punishment_round']:
-            yield  IntroPunishment,
+            yield IntroPunishment,
+            yield CQ2, {
+                'pcq1': 0,
+                'pcq2': 0,
+                'pcq3': 12,
+                'pcq4': 30,
+            }
         contribution = random.randint(0, self.player.endowment)
 
         yield Submission(Contribute, {'contribution': contribution}, timeout_happened=False)
