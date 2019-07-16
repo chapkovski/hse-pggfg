@@ -17,11 +17,12 @@ class Constants(BaseConstants):
     name_in_url = 'pggfg'
     players_per_group = 3
     num_others_per_group = players_per_group - 1
-    num_rounds = 2
+    num_rounds = 10
     rounds = list(range(1, num_rounds + 1))
     instructions_template = 'pggfg/includes/Instructions.html'
     endowment = 20
     efficiency_factor = 2
+    coef_factor = round(efficiency_factor / players_per_group, 2)
     punishment_endowment = 6
     punishment_factor = 3
 

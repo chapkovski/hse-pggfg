@@ -17,62 +17,12 @@
              style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         <script src="{% static 'js/highcharts.js' %}"></script>
         <script>
-
-
-            $('#highcharts-container').highcharts({
-                title: {
-                    text: 'Вложения в общий счет в предыдущих периодах'
-                },
-                credits: {
-                    enabled: false
-                },
-                chart: {
-                    type: 'scatter',
-                    zoomType: 'xy'
-                },
-                xAxis: {
-
-                    title: {text: 'Период'},
-                    allowDecimals: false,
-                    categories: {{ player.charts.rounds|json }},
-                },
-                yAxis: {
-                    title: {
-                        text: 'ECU'
-                    },
-
-                },
-                tooltip: {
-                    crosshairs: true,
-                    headerFormat: '<b>{point.series.name}</b><br />',
-                    pointFormat: 'Contribution: <b>{point.y}</b> '
-                },
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom',
-                    borderWidth: 0
-                },
-                series: [
-                    {
-                        'name': 'Средний вклад по вашей группе',
-                        'type': 'line',
-                        'data': {{player.charts.group_average|json}},
-                        'marker': {
-                            'radius': 10,
-                        }
-                    },
-                    {
-                        'name': 'Ваши вложения в общий счет',
-                        'type': 'line',
-                        'data': {{player.charts.individual_contributions|json}},
-                        'marker': {
-                            'radius': 10,
-                        }
-                    }]
-            });
-
+            var categories = {{ player.charts.rounds|json }};
+            var group_average = {{player.charts.group_average|json}};
+            var individual_contributions ={{player.charts.individual_contributions|json}};
+            var chart_title = 'Вложения в общий счет в предыдущих периодах';
         </script>
+        <script src="{% static "js/contribution_chart.js" %}"></script>
     {% endif %}
 
 

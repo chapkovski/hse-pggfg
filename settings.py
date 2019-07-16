@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
         'display_name': "Public Good Game - Punishment",
         'num_demo_participants': 3,
         'app_sequence': ['pggfg'],
-        'punishment_round': 2
+        'punishment_round': 6
     },
 
 ]

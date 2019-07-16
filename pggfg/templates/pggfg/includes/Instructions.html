@@ -4,35 +4,49 @@
     <div class="card-body">
         <ul class="list-group list-group-flush mb-3">
             <li class="list-group-item">
-                В каждой группе по {{ Constants.players_per_group }} участников,
-                случайным образом разбитые на равные группы. Состав групп не меняется на
-                протяжении всей игры.
+                Все участники случайным образом разбиты на группы по {{ Constants.players_per_group }} участника.
+                Состав групп не меняется на протяжении всего эксперимента.
             </li>
             <li class="list-group-item">
-                В начале каждого периода каждый участник вашей группы
-                получает
-                <strong>{{ Constants.endowment|c }}</strong> и решает, в какой пропорции разбить ее между
-                <strong>личным счетом</strong> и <strong>общим счетом</strong>.
-            <li class="list-group-item">
-                Каждая единица на личном счету приносит 1 ECU лично данному участнику.
+                In each round, you receive an endowment of {{ player.endowment }}. You decide how much of this endowment
+                you
+                want to
+                "keep", and how much you want to "contribute". Each contribution <i>x</i> creates an amount
+                of {{ Constants.coef_factor }}x
+                for each
+                group member (including the contributor). That means that for every ECU you contribute, the
+                members of
+                the whole group will be paid {{ Constants.coef_factor }} ECU each. For each ECU you contribute,
+                you will
+                be
+                paid {{ Constants.coef_factor }} ECU, like all other group members. That part of your endowment that you
+                do not
+                contribute
+                (i. e. that you “keep”), you keep for yourself.
             </li>
             <li class="list-group-item">
+                Summing up in one formula, your earnings in ECU per round are as follows:
+            </li>
+            <li class="list-group-item text-center border font-weight-bold">
+                {{ player.endowment }} – Your Contribution + {{ Constants.coef_factor }} × (Sum of all group members’
+                contributions)
+            </li>
+            <li class="list-group-item">
+                Please note that your contribution per round can be any amount between 0 and {{ player.endowment }}
+                and that all
+                group members are facing an identical decision situation. After each round you will be informed
+                about the amount you contributed, the contributions of each of the
+                other {{ Constants.num_others_per_group }}
+                group members, your payoff based
+                on
+                the contributions of all group members, your payoff in the respective round and your payoff cumulated
+                over
+                all rounds. In addition, you will see a chart listing the average contribution of your group, and your
+                contribution
+                for all previous rounds.
+            </li>
 
-                Каждая единица на общем счету приносит {{ Constants.efficiency_factor }}
-                ECU каждому участнику из данной группы, вне зависимости от его или ее взноса.
 
-            </li>
-
-            </li>
-            <li class="list-group-item">
-                В каждом периоде ваш доход формируется формируется так:
-            </li>
-            <li class="list-group-item">
-                Доход = {{ player.endowment }} - Ваш взнос на общий счет +
-                <wbr>
-                {{ Constants.efficiency_factor }} * сумма взносов на общий счет/ {{ Constants.players_per_group }}</i>
-
-            </li>
             <li class="list-group-item">
                 {% include 'pggfg/includes/slider.html' %}
             </li>
