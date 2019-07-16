@@ -1,25 +1,25 @@
 {% load otree %}
 
 
-<h6 class="my-3">For example, if each of you get {{ Constants.endowment|c }} and you contribute:</h6>
+<h6 class="my-3">Например, если каждый из вас в начале периода  получает {{ Constants.endowment|c }} и ваш вклад:</h6>
 
 <div id="slider_you" class='sliders'>
     <div id="custom-handle" class="ui-slider-handle"></div>
 </div>
-<h6 class="my-3">... and average contribution of other {{ Constants.num_others_per_group }} participants:</h6>
+<h6 class="my-3">... и средний вклад других  {{ Constants.num_others_per_group }} участников :</h6>
 <div id="slider_others" class='sliders'>
     <div id="custom-handle" class="ui-slider-handle"></div>
 </div>
-<h4 class="my-3">Then:</h4>
+<h4 class="my-3">Тогда:</h4>
 <table class="table table-striped ">
     <tr>
         <td>
-            The others will earn an average of:
+            Средний доход других участников:
         </td>
         <th id='others_share'></th>
     </tr>
     <tr>
-        <td>You will earn:</td>
+        <td>Ваш доход:</td>
         <th id='yourearnings'></th>
     </tr>
 </table>

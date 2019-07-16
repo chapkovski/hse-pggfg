@@ -1,0 +1,46 @@
+{% load otree %}
+
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+                В каждой группе по {{ Constants.players_per_group }} участников,
+                случайным образом разбитые на равные группы. Состав групп не меняется на
+                протяжении всей игры.
+            </li>
+            <li class="list-group-item">
+                В начале каждого периода каждый участник вашей группы
+                получает
+                <strong>{{ Constants.endowment|c }}</strong> и решает, в какой пропорции разбить ее между
+                <strong>личным счетом</strong> и <strong>общим счетом</strong>.
+            <li class="list-group-item">
+                Каждая единица на личном счету приносит 1 ECU лично данному участнику.
+            </li>
+            <li class="list-group-item">
+
+                Каждая единица на общем счету приносит {{ Constants.efficiency_factor }}
+                ECU каждому участнику из данной группы, вне зависимости от его или ее взноса.
+
+            </li>
+
+            </li>
+            <li class="list-group-item">
+                  В каждом периоде ваш доход формируется формируется так:
+            </li>
+        <li class="list-group-item">
+                Доход = {{ player.endowment }} - Ваш взнос на общий счет + <wbr> {{Constants.efficiency_factor}} * сумма взносов на общий счет/ {{ Constants.players_per_group }}</i>
+
+            </li>
+            {% if subsession.punishment %}
+
+
+                {% include 'pggfg/includes/punishment_instructions.html' %}
+
+
+            {% endif %}
+            <li class="list-group-item">
+                {% include 'pggfg/includes/slider.html' %}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,6 +1,11 @@
 {% load otree %}
 
-After every member of your group makes their contributions,
-eacho of you are able to observe the contributions of your group members
-and send them 'deduction tokens'. Each deduction token decreases your payoff
-by 1 point, and decreases the other member's payoff by {{ Constants.punishment_factor|c }}.
+<li class="list-group-item">
+    После того, как все участники примут свои решения, каждый из вас получит возможность сделать <b>вычет</b>
+    из доходов другого участника, заплатив за это сумму от 0 до <strong>{{ player.punishment_endowment }}</strong>.
+    Каждое очко, которое вы потратите на
+    вычет у другого участника, уменьшит его доход в данном раунде на
+    <strong>{{ Constants.punishment_factor|c }}</strong>.
+    Другие игроки могут то же самое сделать с
+    вашим доходом.
+</li>

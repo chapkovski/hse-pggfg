@@ -2,18 +2,22 @@
 {% load otree %}
 
 {% block title %}
-    Stage 1: Contribution (Period {{ player.round_number }} of
+    Часть 1: Вложение в общий счет (Период {{ player.round_number }} из
     {{ Constants.num_rounds }})
 {% endblock %}
 
 {% block inner_content %}
-    {% include 'pggfg/includes/endowment_gender_block.html' %}
-    <div class="alert alert-info">Your endowment in this round: <strong>{{ player.endowment }}</strong></div>
+
+    <div class="alert alert-info">Начальная сумма: <strong>{{ player.endowment }}</strong></div>
     {% formfield player.contribution with label=label %}
 
     {% next_button %}
 
+
     {% include Constants.instructions_template %}
 
     {{ block.super }}
+{% endblock %}
+{% block scripts %}
+
 {% endblock %}

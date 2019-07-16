@@ -15,37 +15,21 @@ class Intro(Page):
     def is_displayed(self):
         return self.subsession.round_number == 1
 
+class IntroPunishment(Page):
+    def is_displayed(self) -> bool:
+        return self.round_number == self.session.config['punishment_round']
 
 class Contribute(Page):
     form_model = 'player'
     form_fields = ['contribution']
-    timeout_submission = {'contribution': 0}
 
-    def get_timeout_seconds(self):
-        cur_timer = self.subsession.timeout_contribution_seconds
-        if cur_timer and cur_timer > 0:
-            return cur_timer
 
     def vars_for_template(self):
-        label = f'How much will you contribute to the project (from 0 to {self.player.endowment})?'
-        x = self.subsession.timeout_contribution_points
-        contribution_string = 'chosen randomly' if self.subsession.random_contribution else x
-        timer_text = f"""If you do not take decision on time, your contribution will be {contribution_string}. 
-        Time left to complete this page:"""
-        return {'label': label,
-                'timer_text': timer_text
-                }
+        label = f'Сколько вы вкладываете в общий счет (от 0 до {self.player.endowment})?'
+        return {'label': label, }
 
     def contribution_max(self):
         return self.player.endowment
-
-    def before_next_page(self):
-        if self.timeout_happened:
-            if self.subsession.random_contribution:
-                c = random.randint(0, self.player.endowment)
-            else:
-                c = self.subsession.timeout_contribution_points or 0
-            self.player.contribution = c
 
 
 class AfterContribWP(WaitPage):
@@ -88,6 +72,7 @@ class Results(Page):
 page_sequence = [
     StartWP,
     Intro,
+    IntroPunishment,
     Contribute,
     AfterContribWP,
     Punishment,

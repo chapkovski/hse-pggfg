@@ -11,7 +11,7 @@
         $(function () {
             $('#highcharts-container').highcharts({
                 title: {
-                    text: 'Contributions'
+                    text: 'Вложения в общий счет'
                 },
                 credits: {
                     enabled: false
@@ -22,13 +22,13 @@
                 },
                 xAxis: {
 
-                    title: {text: 'Round'},
+                    title: {text: 'Период'},
                     allowDecimals: false,
                     categories: {{ player.charts.rounds|json }},
                 },
                 yAxis: {
                     title: {
-                        text: 'Points'
+                        text: 'ECU'
                     },
 
                 },
@@ -45,7 +45,7 @@
                 },
                 series: [
                     {
-                        'name': 'Your group average',
+                        'name': 'Средний вклад по вашей группе',
                         'type': 'line',
                         'data': {{player.charts.group_average|json}},
                         'marker': {
@@ -53,7 +53,7 @@
                         }
                     },
                     {
-                        'name': 'Your contributions',
+                        'name': 'Ваши вложения в общий счет',
                         'type': 'line',
                         'data': {{player.charts.individual_contributions|json}},
                         'marker': {

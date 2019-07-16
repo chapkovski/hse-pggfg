@@ -19,24 +19,15 @@ class Constants(BaseConstants):
     num_others_per_group = players_per_group - 1
     num_rounds = 10
     rounds = list(range(1, num_rounds + 1))
-    instructions_template = 'pggfg/Instructions.html'
+    instructions_template = 'pggfg/includes/Instructions.html'
     endowment = 20
-    lb = c(10)
-    ub = c(30)
     efficiency_factor = 2
     punishment_endowment = 10
     punishment_factor = 3
-    configurable_params = ['gender_shown', 'hetero_endowment', 'punishment', 'timeout_contribution_points',
-                           'timeout_contribution_seconds', 'random_contribution']
 
 
 class Subsession(BaseSubsession):
-    gender_shown = models.BooleanField(doc='whether the gender of other members of the groups will be shown')
-    hetero_endowment = models.BooleanField(doc='whether the endowment is fixed or random')
     punishment = models.BooleanField(doc='whether game has a punihsment stage')
-    timeout_contribution_points = models.CurrencyField(doc='In case of a fixed contribution how much?')
-    timeout_contribution_seconds = models.IntegerField(doc='How many seconds a player has for decision on contribution')
-    random_contribution = models.BooleanField(doc='will be contribution set randomly in case of timeout?')
 
     def get_average(self):
         all_contribs = [p.contribution or 0 for p in self.get_players()]
@@ -47,18 +38,13 @@ class Subsession(BaseSubsession):
         return {'series': session_contribs,
                 'rounds': Constants.rounds}
 
-    def set_config(self):
-        for k in Constants.configurable_params:
-            v = self.session.config.get(k)
-            setattr(self, k, v)
-
     def creating_session(self):
-        self.set_config()
+        if self.round_number < self.session.config['punishment_round']:
+            self.punishment = False
+        else:
+            self.punishment = True
         for p in self.get_players():
-            if self.hetero_endowment:
-                p.endowment = random.randint(Constants.lb, Constants.ub)
-            else:
-                p.endowment = Constants.endowment
+            p.endowment = Constants.endowment
 
 
 class Group(BaseGroup):
@@ -89,7 +75,7 @@ class Player(BasePlayer):
     punishment_sent = models.IntegerField()
     punishment_received = models.IntegerField()
     pd_payoff = models.CurrencyField(doc='to store payoff from contribution stage')
-    punishment_endowment = models.IntegerField(initial=0, doc='punishment endowment')
+    punishment_endowment = models.CurrencyField(initial=0, doc='punishment endowment')
     pun1, pun2, pun3 = [models.CurrencyField() for i in range(3)]
 
     def set_payoff(self):

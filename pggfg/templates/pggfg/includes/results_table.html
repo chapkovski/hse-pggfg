@@ -18,14 +18,14 @@
         </thead>
         <tbody>
         <tr>
-            <td>Your endowment:</td>
+            <td>Начальная сумма:</td>
             <td id="filka"></td>
             <td><strong>{{ Constants.endowment }}</strong></td>
 
         </tr>
 
         <tr>
-            <td>You contributed:</td>
+            <td>Ваше вложение в общий счет:</td>
             <td> -</td>
             <td><strong>{{ player.contribution }}</strong></td>
 
@@ -33,30 +33,30 @@
 
 
         <tr>
-            <td>Your earnings from the project:</td>
+            <td>Ваши доходы от общего счета:</td>
             <td> +</td>
             <td><b>{{ group.individual_share }}</b></td>
         </tr>
         {% if subsession.punishment %}
             <tr>
-                <td>Punishment you sent:</td>
+                <td>Ваши траты на вычеты у других участников:</td>
                 <td> -</td>
                 <td><b>{{ player.punishment_sent }}</b></td>
             </tr>
             <tr>
-                <td>Punishment you received:</td>
+                <td>Вычеты из вашего дохода, сделанные другими участниками:</td>
                 <td> -</td>
                 <td><b>{{ player.punishment_received }}</b></td>
             </tr>
         {% endif %}
         <tr>
-            <td>Your payoff in this round:</td>
+            <td>Ваш доход в этом периоде:</td>
             <td> =</td>
             <td><b>{{ player.payoff }}</b></td>
         </tr>
         <thead class="thead-dark">
         <tr>
-            <th>Your aggregated payoff so far:</th>
+            <th>Ваш общий доход к этому периоду:</th>
             <th> =</th>
             <th><b>{{ participant.payoff }}</b></th>
         </tr>
