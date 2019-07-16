@@ -25,11 +25,16 @@
 
             </li>
             <li class="list-group-item">
-                  В каждом периоде ваш доход формируется формируется так:
+                В каждом периоде ваш доход формируется формируется так:
             </li>
-        <li class="list-group-item">
-                Доход = {{ player.endowment }} - Ваш взнос на общий счет + <wbr> {{Constants.efficiency_factor}} * сумма взносов на общий счет/ {{ Constants.players_per_group }}</i>
+            <li class="list-group-item">
+                Доход = {{ player.endowment }} - Ваш взнос на общий счет +
+                <wbr>
+                {{ Constants.efficiency_factor }} * сумма взносов на общий счет/ {{ Constants.players_per_group }}</i>
 
+            </li>
+            <li class="list-group-item">
+                {% include 'pggfg/includes/slider.html' %}
             </li>
             {% if subsession.punishment %}
 
@@ -38,9 +43,7 @@
 
 
             {% endif %}
-            <li class="list-group-item">
-                {% include 'pggfg/includes/slider.html' %}
-            </li>
+
         </ul>
     </div>
 </div>
