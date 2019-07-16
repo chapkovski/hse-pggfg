@@ -15,14 +15,15 @@ class Intro(Page):
     def is_displayed(self):
         return self.subsession.round_number == 1
 
+
 class IntroPunishment(Page):
     def is_displayed(self) -> bool:
         return self.round_number == self.session.config['punishment_round']
 
+
 class Contribute(Page):
     form_model = 'player'
     form_fields = ['contribution']
-
 
     def vars_for_template(self):
         label = f'Сколько вы вкладываете в общий счет (от 0 до {self.player.endowment})?'
@@ -69,6 +70,11 @@ class Results(Page):
     pass
 
 
+class FinalResults(Page):
+    def is_displayed(self) -> bool:
+        return self.round_number == Constants.num_rounds
+
+
 page_sequence = [
     StartWP,
     Intro,
@@ -78,4 +84,5 @@ page_sequence = [
     Punishment,
     AfterPunishmentWP,
     Results,
+    FinalResults,
 ]

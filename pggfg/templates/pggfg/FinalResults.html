@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Итоги эксперимента:
+{% endblock %}
+
+{% block inner_content %}
+    <table class="table table-stripped table-hover">
+        <tr>
+            <td colspan="2" class="text-center font-weight-bold">Ваши доходы в каждом периоде:</td>
+        </tr>
+        <tr>
+            <th>Период:</th>
+            <th>Доход:</th>
+        </tr>
+        {% for foo in player.in_all_rounds %}
+            <tr>
+                <td> {{ foo.round_number }}</td>
+                <td>{{ foo.payoff }} </td>
+            </tr>
+
+        {% endfor %}
+        <tr class="table-success">
+            <th class="text-center font-weight-bold">Общий доход:</th>
+            <th>{{ participant.payoff }}</th>
+        </tr>
+    </table>
+    <div class="my-3">
+        {% next_button %}
+    </div>
+{% endblock %}
