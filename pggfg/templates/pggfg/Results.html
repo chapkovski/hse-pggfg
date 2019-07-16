@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Results  (Period {{ subsession.round_number }} of {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block inner_content %}
+    {% include 'pggfg/includes/results_table.html' %}
+    {% include 'pggfg/includes/endowment_gender_block.html' with results=True %}
+    {% include 'pggfg/includes/results_chart.html' %}
+    <div class="my-3"></div>
+    {% next_button %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Stage 1: Contribution (Period {{ player.round_number }} of
+    {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block inner_content %}
+    {% include 'pggfg/includes/endowment_gender_block.html' %}
+    <div class="alert alert-info">Your endowment in this round: <strong>{{ player.endowment }}</strong></div>
+    {% formfield player.contribution with label=label %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+    {{ block.super }}
+{% endblock %}

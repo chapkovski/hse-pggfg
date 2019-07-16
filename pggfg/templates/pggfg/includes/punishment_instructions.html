@@ -1,0 +1,6 @@
+{% load otree %}
+
+After every member of your group makes their contributions,
+eacho of you are able to observe the contributions of your group members
+and send them 'deduction tokens'. Each deduction token decreases your payoff
+by 1 point, and decreases the other member's payoff by {{ Constants.punishment_factor|c }}.

@@ -1,0 +1,66 @@
+{% load otree %}
+
+<div id="highcharts-container"
+     style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+{% block scripts %}
+    <script src="{% static 'js/highcharts.js' %}"></script>
+
+    <script>
+        $(function () {
+            $('#highcharts-container').highcharts({
+                title: {
+                    text: 'Contributions'
+                },
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'scatter',
+                    zoomType: 'xy'
+                },
+                xAxis: {
+
+                    title: {text: 'Round'},
+                    allowDecimals: false,
+                    categories: {{ player.charts.rounds|json }},
+                },
+                yAxis: {
+                    title: {
+                        text: 'Points'
+                    },
+
+                },
+                tooltip: {
+                    crosshairs: true,
+                    headerFormat: '<b>{point.series.name}</b><br />',
+                    pointFormat: 'Contribution: <b>{point.y}</b> '
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
+                },
+                series: [
+                    {
+                        'name': 'Your group average',
+                        'type': 'line',
+                        'data': {{player.charts.group_average|json}},
+                        'marker': {
+                            'radius': 10,
+                        }
+                    },
+                    {
+                        'name': 'Your contributions',
+                        'type': 'line',
+                        'data': {{player.charts.individual_contributions|json}},
+                        'marker': {
+                            'radius': 10,
+                        }
+                    }]
+            });
+        });
+    </script>
+{% endblock %}

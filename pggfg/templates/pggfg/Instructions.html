@@ -1,0 +1,50 @@
+{% load otree %}
+
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+                In the beginning of each round every participant in your group
+                of {{ Constants.players_per_group }}
+                receives
+
+                {% if subsession.hetero_endowment %}
+                    an endowment that varies between {{ Constants.lb }} and {{ Constants.ub }}.
+                {% else %}
+                    <strong>{{ Constants.endowment|c }}</strong>.
+                {% endif %}
+
+                The group
+                has the opportunity to undertake a joint project. Each participant in
+                the group decides how much they are going to contribute to
+                the project. Contribution could be any integer from <strong>{{ 0|c }}</strong>
+                to   {% if subsession.hetero_endowment %}
+                the amount this person received as an endowment.
+            {% else %}
+                <strong>{{ Constants.endowment|c }}</strong>.
+            {% endif %}
+
+            </li>
+            <li class="list-group-item">
+                The earnings from the project are calculated as follows: The
+                contributions of all <strong>{{ Constants.players_per_group }}</strong> participants are
+                added up, the total contribution
+                is multiplied by a factor of <strong>{{ Constants.efficiency_factor }}</strong>, and the
+                resulting amount is the total earnings from the project, which is
+                evenly split among all <strong>{{ Constants.players_per_group }}</strong>
+                participants. Your payoff equals your earnings from the project, plus
+                the amount you did not contribute.
+            </li>
+            {% if subsession.punishment %}
+                <li class="list-group-item">
+
+                    {% include 'pggfg/includes/punishment_instructions.html' %}
+
+                </li>
+            {% endif %}
+            <li class="list-group-item">
+                {% include 'pggfg/includes/slider.html' %}
+            </li>
+        </ul>
+    </div>
+</div>
