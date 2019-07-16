@@ -8,42 +8,38 @@
                 Состав групп не меняется на протяжении всего эксперимента.
             </li>
             <li class="list-group-item">
-                In each round, you receive an endowment of {{ player.endowment }}. You decide how much of this endowment
-                you
-                want to
-                "keep", and how much you want to "contribute". Each contribution <i>x</i> creates an amount
-                of {{ Constants.coef_factor }}x
-                for each
-                group member (including the contributor). That means that for every ECU you contribute, the
-                members of
-                the whole group will be paid {{ Constants.coef_factor }} ECU each. For each ECU you contribute,
-                you will
-                be
-                paid {{ Constants.coef_factor }} ECU, like all other group members. That part of your endowment that you
-                do not
-                contribute
-                (i. e. that you “keep”), you keep for yourself.
+                В каждом периоде вы получаете {{ player.endowment }}.
+                Вы принимаете решение, какую часть из этой суммы (в целых числах)
+                Вы хотите оставить у себя, а какую хотите вложить в общий проект вашей группы. Каждая единица ECU,
+                которую Вы оставили себе, приносит лично Вам 1 ECU в конце периода. Каждая единица ECU, вложенная в
+                общий
+                проект, приносит {{ Constants.coef_factor }} ECU как Вам, так и всем остальным членам группы. Иными
+                словами, за каждый ЭКЮ,
+                который вы вкладываете в общий проект, все члены всей группы получат {{ Constants.coef_factor }} ECU,
+                вне зависимости от того,
+                сколько они вложили.
+
+
             </li>
             <li class="list-group-item">
-                Summing up in one formula, your earnings in ECU per round are as follows:
+                Таким образом, Ваш доход в ECU за период формируется следующим образом:
             </li>
             <li class="list-group-item text-center border font-weight-bold">
-                {{ player.endowment }} – Your Contribution + {{ Constants.coef_factor }} × (Sum of all group members’
-                contributions)
+                {{ player.endowment }} – Ваш вклад в общий проект + {{ Constants.coef_factor }} × (сумма вкладов всех
+                членов группы)
             </li>
             <li class="list-group-item">
-                Please note that your contribution per round can be any amount between 0 and {{ player.endowment }}
-                and that all
-                group members are facing an identical decision situation. After each round you will be informed
-                about the amount you contributed, the contributions of each of the
-                other {{ Constants.num_others_per_group }}
-                group members, your payoff based
-                on
-                the contributions of all group members, your payoff in the respective round and your payoff cumulated
-                over
-                all rounds. In addition, you will see a chart listing the average contribution of your group, and your
-                contribution
-                for all previous rounds.
+                Таким образом, ваш вклад за раунд может составлять любую сумму от 0 до {{ player.endowment }}. Все члены
+                группы
+                находятся в той же самой ситуации и принимают такие же решения.
+            </li>
+
+            <li class="list-group-item">
+                После каждого раунда Вам будет доступна информация о сумме, которую Вы вложили, о вкладах каждого из
+                {{ Constants.num_others_per_group }} других членов группы, Ваш доход от общего проекта, Ваш общий
+                выигрыш в текущем раунде и Ваш
+                совокупный общий выигрыш за все раунды. Кроме того, вы увидите график, показывающий Ваши вклады и
+                средние вклады других участников из вашей группы за все раунды.
             </li>
 
 
@@ -51,7 +47,6 @@
                 {% include 'pggfg/includes/slider.html' %}
             </li>
             {% if subsession.punishment %}
-
 
                 {% include 'pggfg/includes/punishment_instructions.html' %}
 

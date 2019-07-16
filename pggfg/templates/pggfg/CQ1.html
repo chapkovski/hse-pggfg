@@ -9,10 +9,8 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">
-                Question 1. Each member of the group can is endowed with
-                20 Taler. Each
-                member of the group – including yourself – do not contribute anything to] the
-                project. What is, in Taler:
+                Вопрос 1. В текущем раунде каждый участник из вашей группы получил 20 ECU. Никто из участников из вашей
+                группы, включая Вас, ничего не вложил в общий проект в текущем раунде.
             </h6>
             {% formfield player.cq1_a %}
             {% formfield player.cq1_b %}
@@ -24,11 +22,8 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">
-                Question 2. Each member of the group is endowed with
-                20 Taler. You
-                contribute all 20 Taler. The other two member of the group also contribute
-                all 20 Taler.
-                What is, in Taler,
+                Вопрос 2. В текущем раунде каждый участник из вашей группы получил 20 ECU. Вы вложили в общий проект 20
+                ECU. Остальные два участника также вложили в общий проект 20 ECU.
             </h6>
             {% formfield player.cq2_a %}
             {% formfield player.cq2_b %}
@@ -38,10 +33,8 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">
-                Question 3. Each member of the group is endowed with 20 Taler. You
-                contribute 3 Taler. The second member of the group contributes 10 Taler and the third member of the
-                group contributes 17 Taler].
-                What is, in Taler,
+                Вопрос 3. В текущем раунде каждый участник из вашей группы получил 20 ECU. Вы вложили в общий проект 3
+                ECU. Второй участник из вашей группы вложил 10 ECU, а третий участник вложил 20 ECU в текущем раунде.
             </h6>
             {% formfield player.cq3_a %}
             {% formfield player.cq3_b %}
@@ -52,18 +45,18 @@
     <div class="card">
         <div class="card-body">
             <h6 class="card-title">
-                Question 4. Each member of the group is endowed with 20 Taler]. You
-                and the second member of the group contribute 20 Taler each]. The third member of the group contributes
-                0 Taler].
-                What is, in Taler,
+                Вопрос 4. В текущем раунде каждый участник из вашей группы получил 20 ECU. Вы и второй участник из вашей
+                группы вложили в общий проект 20 ECU. Третий участник из вашей группы в текущем раунде вложил в общий
+                проект 0 ECU.
             </h6>
             {% formfield player.cq4_a %}
             {% formfield player.cq4_b %}
             {% formfield player.cq4_c %}
         </div>
     </div>
-
-
+    <div class="my-3">
+        {% next_button %}
+    </div>
     {% include Constants.instructions_template %}
 
     {{ block.super }}
@@ -75,8 +68,8 @@
 
 {% block styles %}
     <style>
-    .card{
-        margin-top:10px;
-    }
+        .card {
+            margin-top: 10px;
+        }
     </style>
 {% endblock %}

@@ -3,6 +3,7 @@ from ._builtin import Page, WaitPage
 from otree.api import Currency as c, currency_range
 from .models import Constants, Player
 import random
+from django.core import validators
 
 
 class StartWP(WaitPage):
@@ -16,8 +17,19 @@ class Intro(Page):
         return self.subsession.round_number == 1
 
 
-class CQ1(Page):
+class CompMixin:
+    def get_form(self, *args, **kwargs):
+        f = super().get_form(*args, **kwargs)
+        for i, j in f.fields.items():
+            regex = rf'^{str(Constants.correct_answers.get(i))}$'
+            j.validators.append(validators.RegexValidator(message='Проверьте правильность ответа', regex=regex,
+                                                          code='invalid_input'))
+        return f
+
+
+class CQ1(CompMixin, Page):
     form_model = 'player'
+
     def is_displayed(self):
         return self.subsession.round_number == 1
 

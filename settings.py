@@ -22,6 +22,8 @@ SESSION_CONFIGS = [
     },
 
 ]
+USE_L10N = False
+DECIMAL_SEPARATOR = '.'
 for i in SESSION_CONFIGS:
     i.setdefault('use_browser_bots', False)
 

@@ -21,10 +21,21 @@ class Constants(BaseConstants):
     rounds = list(range(1, num_rounds + 1))
     instructions_template = 'pggfg/includes/Instructions.html'
     endowment = 20
-    efficiency_factor = 2
+    efficiency_factor = 1.5
     coef_factor = round(efficiency_factor / players_per_group, 2)
     punishment_endowment = 6
     punishment_factor = 3
+    correct_answers = {'cq1_a': 20,
+                       'cq1_b': 20,
+                       'cq2_a': 30,
+                       'cq2_b': 30,
+                       'cq3_a': 32,
+                       'cq3_b': 25,
+                       'cq3_c': 17,
+                       'cq4_a': 20,
+                       'cq4_b': 20,
+                       'cq4_c': 40,
+                       }
 
 
 class Subsession(BaseSubsession):
@@ -69,25 +80,25 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     ########### BLOCK: CQ ##############################################################
-    cq1_a = models.CurrencyField(label="your total income in this period?")
+    cq1_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
     cq1_b = models.CurrencyField(
-        label="the total income from the experiment of each of the other two members of the group?")
+        label="Каким будет общий выигрыш двух других участников из вашей группы в текущем периоде (ECU)?")
 
-    cq2_a = models.CurrencyField(label="your total income in this period?")
+    cq2_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
     cq2_b = models.CurrencyField(
-        label="the total income from the experiment of each of the other two members of the group?")
+        label="Каким будет общий выигрыш двух других участников из вашей группы в текущем периоде (ECU)?")
 
-    cq3_a = models.CurrencyField(label="your total income in this period?")
+    cq3_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
     cq3_b = models.CurrencyField(
-        label="the total income from the experiment of the second member of the group?")
+        label="Каким будет общий выигрыш второго участника из вашей группы в текущем периоде (ECU)?")
     cq3_c = models.CurrencyField(
-        label="the total income from the experiment of the third member of the group?")
+        label="Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?")
 
-    cq4_a = models.CurrencyField(label="your total income in this period?")
+    cq4_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
     cq4_b = models.CurrencyField(
-        label="the total income from the experiment of the second member of the group?")
+        label="Каким будет общий выигрыш второго участника из вашей группы в текущем периоде (ECU)?")
     cq4_c = models.CurrencyField(
-        label="the total income from the experiment of the third member of the group?")
+        label="Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?")
 
     ############ END OF: CQ #############################################################
 
