@@ -1,4 +1,4 @@
-HSE Summcer School on experimetnal methods
+HSE Summcer School on experimental methods
 ================================================
 
 - Public good game (with punishment)
