@@ -82,27 +82,33 @@ class Group(BaseGroup):
             p.set_payoff()
 
 
+YOUR_PROFIT_LABEL = "Каким будет Ваш общий выигрыш в текущем периоде?"
+AVERAGE_OTHER_PROF_LABEL = "Каким будет средний выигрыш двух других участников из вашей группы в текущем периоде (ECU)?"
+SECOND_PROF_LABEL = "Каким будет общий выигрыш второго участника из вашей группы в текущем периоде (ECU)?"
+THIRD_PROF_LABEL = "Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?"
+
+
 class Player(BasePlayer):
     ########### BLOCK: CQ - Part 1 ##############################################################
-    cq1_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
+    cq1_a = models.CurrencyField(label=YOUR_PROFIT_LABEL)
     cq1_b = models.CurrencyField(
-        label="Каким будет общий выигрыш двух других участников из вашей группы в текущем периоде (ECU)?")
+        label=AVERAGE_OTHER_PROF_LABEL)
 
-    cq2_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
+    cq2_a = models.CurrencyField(label=YOUR_PROFIT_LABEL)
     cq2_b = models.CurrencyField(
-        label="Каким будет общий выигрыш двух других участников из вашей группы в текущем периоде (ECU)?")
+        label=AVERAGE_OTHER_PROF_LABEL)
 
-    cq3_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
+    cq3_a = models.CurrencyField(label=YOUR_PROFIT_LABEL)
     cq3_b = models.CurrencyField(
-        label="Каким будет общий выигрыш второго участника из вашей группы в текущем периоде (ECU)?")
+        label=SECOND_PROF_LABEL)
     cq3_c = models.CurrencyField(
-        label="Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?")
+        label=THIRD_PROF_LABEL)
 
-    cq4_a = models.CurrencyField(label="Каким будет Ваш общий выигрыш в текущем периоде?")
+    cq4_a = models.CurrencyField(label=YOUR_PROFIT_LABEL)
     cq4_b = models.CurrencyField(
-        label="Каким будет общий выигрыш второго участника из вашей группы в текущем периоде (ECU)?")
+        label=SECOND_PROF_LABEL)
     cq4_c = models.CurrencyField(
-        label="Каким будет общий выигрыш третьего участника из вашей группы в текущем периоде (ECU)?")
+        label=THIRD_PROF_LABEL)
 
     ############ END OF: CQ #############################################################
     ########### BLOCK: CQ for Punishment stage ##############################################################
@@ -116,7 +122,7 @@ class Player(BasePlayer):
     contribution = models.PositiveIntegerField(
         min=0, max=Constants.endowment,
         doc="""The amount contributed by the player""",
-        label="How much will you contribute to the project (from 0 to {})?".format(Constants.endowment)
+        label=f"How much will you contribute to the project (from 0 to {Constants.endowment})?"
     )
     punishment_sent = models.IntegerField()
     punishment_received = models.IntegerField()

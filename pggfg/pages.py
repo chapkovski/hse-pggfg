@@ -123,6 +123,7 @@ class FinalResults(Page):
 
 page_sequence = [
     Welcome,
+    Gender,
     StartWP,
     Intro,
     CQ1,
