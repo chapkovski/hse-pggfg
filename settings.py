@@ -20,6 +20,16 @@ SESSION_CONFIGS = [
         'app_sequence': ['pggfg'],
         'punishment_round': 11,
         'use_browser_bots': False,
+        'gender': False,
+    },
+    {
+        'name': 'pgg_punishment_gender',
+        'display_name': "Public Good Game - Punishment Only + Gender",
+        'num_demo_participants': 3,
+        'app_sequence': ['pggfg'],
+        'punishment_round': 1,
+        'use_browser_bots': False,
+        'gender': True,
     },
 
 ]

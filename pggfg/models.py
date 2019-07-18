@@ -44,6 +44,7 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     punishment = models.BooleanField(doc='whether game has a punihsment stage')
+    gender = models.BooleanField(doc='whether game has a punishment stage')
 
     def get_average(self):
         all_contribs = [p.contribution or 0 for p in self.get_players()]
@@ -59,6 +60,9 @@ class Subsession(BaseSubsession):
             self.punishment = False
         else:
             self.punishment = True
+
+        self.gender = self.session.config.get('gender')
+
         for p in self.get_players():
             p.endowment = Constants.endowment
             p.set_punishment_endowment()
@@ -118,6 +122,8 @@ class Player(BasePlayer):
     pcq4 = models.CurrencyField()
     ############ END OF: CQ for Punishment stage #############################################################
     user_id = models.IntegerField(label='Введите номер указанный на табличке у вас на столе')
+    gender = models.IntegerField(label='', choices=((0, 'Мужчина'), (1, 'Женщина'), (2, 'Другой выбор')),
+                                 widget=widgets.RadioSelect)
     endowment = models.CurrencyField()
     contribution = models.PositiveIntegerField(
         min=0, max=Constants.endowment,

@@ -27,7 +27,9 @@
         <thead>
         <tr>
             <th>Участник:</th>
-
+            {% if subsession.gender %}
+                <th>Пол:</th>
+            {% endif %}
             <th>Начальная сумма</th>
 
 
@@ -40,7 +42,9 @@
         {% for i,j in data %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-
+                {% if subsession.gender %}
+                    <td>{{ i.participant.vars.gender }}</td>
+                {% endif %}
                 <td>{{ i.endowment }}</td>
 
                 <td>{{ i.contribution }}</td>

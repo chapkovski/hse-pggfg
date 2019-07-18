@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Анкета
+{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h5>Пожалуйста, укажите ваш пол:</h5>
+            {% formfields %}
+        </div>
+    </div>
+    <div class="my-3">
+
+
+        {% next_button %}
+    </div>
+
+{% endblock %}

@@ -10,10 +10,11 @@ import random
 class PlayerBot(Bot):
 
     def play_round(self):
-        print(f'ROUND NUMBER:::{self.round_number}\n')
-        print(f'PUNISHMENT??? {self.subsession.punishment}')
+
         if self.round_number == 1:
             yield Welcome, {'user_id': self.player.id_in_subsession}
+            if self.subsession.gender:
+                yield Gender, {'gender': random.randint(0, 1)}
             yield Intro
             yield CQ1, {'cq1_a': 20,
                         'cq1_b': 20,

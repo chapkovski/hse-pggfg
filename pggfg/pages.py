@@ -10,11 +10,32 @@ class Welcome(Page):
     form_fields = ['user_id']
     form_model = 'player'
 
+    def vars_for_template(self) -> dict:
+        rate = int(self.session.config['real_world_currency_per_point'])
+        if (int(str(rate)[-1]) == 1 and rate != 11):
+            e = 'рубль'
+        elif rate in [2, 3, 4]:
+            e = 'рубля'
+        else:
+            e = 'рублей'
+        return {'ending': e}
+
     def is_displayed(self) -> bool:
         return self.round_number == 1
 
     def before_next_page(self):
         self.participant.label = str(self.player.user_id)
+
+
+class Gender(Page):
+    form_fields = ['gender']
+    form_model = 'player'
+
+    def is_displayed(self) -> bool:
+        return self.round_number == 1 and self.subsession.gender
+
+    def before_next_page(self):
+        self.participant.vars['gender'] = self.player.get_gender_display()
 
 
 class StartWP(WaitPage):
